@@ -11,16 +11,15 @@ public class Good_number {
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		
-		// 수의 개수
-		int n = Integer.valueOf(st.nextToken());
-		
-		// n개의 수의 값을 받는다.
-		st = new StringTokenizer(br.readLine());
-		
-		// 수의 값을 받아 long형의 a라는 원본 배열에 저장한다.
+		// 수의 개수를 n에 초기화한다.
+		int n = Integer.valueOf(br.readLine());
+
 		long[] a = new long[n];
+
+		// n개의 수의 값을 받는다.
+		StringTokenizer st = new StringTokenizer(br.readLine());
+
+		// 수의 값을 받아 long형의 a라는 원본 배열에 저장한다.
 		for(int i=0; i<n; i++) {
 			a[i] = Long.valueOf(st.nextToken());
 		}
@@ -37,19 +36,23 @@ public class Good_number {
 			
 			while(x<y) {
 				if(a[x] + a[y] == find) {
-					count++;
-					x++;
-					y--;
+					if(x != find && y != find) {
+						count++;
+						break;
+					} else if (x == find) {
+						x++;
+					} else if (y == find) {
+						y--;
+					}
 				} else if(a[x] + a[y] > find) {
 					y--;
 				} else if(a[x] + a[y] < find) {
 					x++;
 				}
 			}
-			
-			System.out.println(count);
-			
+						
 		}
+		System.out.println(count);
 		
 
 	}
